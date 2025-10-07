@@ -1,0 +1,206 @@
+type AutoCompoundUserSettingChanged @entity(immutable: true) {
+  id: Bytes!
+  account: Bytes! # address
+  newSelectedCompoundType: Int! # uint8
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type Claimed @entity(immutable: true) {
+  id: Bytes!
+  account: Bytes! # address
+  token: Int! # uint8
+  amount: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type Compound @entity(immutable: true) {
+  id: Bytes!
+  account: Bytes! # address
+  compoundInitiatedBy: Bytes! # address
+  token: Int! # uint8
+  drgAmount: BigInt! # uint256
+  usdcAmount: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type Deposit @entity(immutable: true) {
+  id: Bytes!
+  funder: Bytes! # address
+  amount: BigInt! # uint256
+  pendingDragon: BigInt! # uint256
+  pendingUSDC: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type Discarded @entity(immutable: true) {
+  id: Bytes!
+  account: Bytes! # address
+  rewardsDragon: BigInt! # uint256
+  rewardsUSDC: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type DragonswapTokenPriceOracleSet @entity(immutable: true) {
+  id: Bytes!
+  dragonswapTokenPriceOracle: Bytes! # address
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type EnteredWithdrawal @entity(immutable: true) {
+  id: Bytes!
+  account: Bytes! # address
+  amount: BigInt! # uint256
+  emergency: Boolean! # bool
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type InstantWithdraw @entity(immutable: true) {
+  id: Bytes!
+  account: Bytes! # address
+  unlockedAmount: BigInt! # uint256
+  redistributedToStakers: BigInt! # uint256
+  treasuryFee: BigInt! # uint256
+  emergency: Boolean! # bool
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type MarketplaceFeesSet @entity(immutable: true) {
+  id: Bytes!
+  marketplaceFeeDragon: BigInt! # uint256
+  marketplaceFeeUSDC: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type MinimumDepositSet @entity(immutable: true) {
+  id: Bytes!
+  minimumDeposit: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type NewOffer @entity(immutable: true) {
+  id: Bytes!
+  seller: Bytes! # address
+  stake: BigInt! # uint256
+  price: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type OfferRemoved @entity(immutable: true) {
+  id: Bytes!
+  seller: Bytes! # address
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type OwnershipTransferred @entity(immutable: true) {
+  id: Bytes!
+  previousOwner: Bytes! # address
+  newOwner: Bytes! # address
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type Purchase @entity(immutable: true) {
+  id: Bytes!
+  buyer: Bytes! # address
+  seller: Bytes! # address
+  boughtAmount: BigInt! # uint256
+  price: BigInt! # uint256
+  feeDragon: BigInt! # uint256
+  feeUSDC: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type RankRequirementsSet @entity(immutable: true) {
+  id: Bytes!
+  rankRequirements: [BigInt!]! # uint256[]
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type RewardsIncreased @entity(immutable: true) {
+  id: Bytes!
+  t: Int! # uint8
+  amount: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type StakeManagerSet @entity(immutable: true) {
+  id: Bytes!
+  stakeManager: Bytes! # address
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type Swept @entity(immutable: true) {
+  id: Bytes!
+  token: Bytes! # address
+  to: Bytes! # address
+  amount: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type TreasuryFeeSet @entity(immutable: true) {
+  id: Bytes!
+  treasuryFee: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type TreasurySet @entity(immutable: true) {
+  id: Bytes!
+  treasury: Bytes! # address
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type Withdraw @entity(immutable: true) {
+  id: Bytes!
+  account: Bytes! # address
+  amount: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type WithdrawalPeriodChanged @entity(immutable: true) {
+  id: Bytes!
+  withdrawalPeriod: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}

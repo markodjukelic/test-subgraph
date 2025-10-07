@@ -1,0 +1,8 @@
+{
+  "sei-mainnet": {
+    "Staker": {
+      "address": "0x5f9e192B3c8d131715b0580ba5e376b9A074634c",
+      "startBlock": 172127729
+    }
+  }
+}
