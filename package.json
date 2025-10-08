@@ -1,18 +1,17 @@
 {
   "name": "dswap-stakerv2-subgraph-final",
-  "license": "UNLICENSED",
+  "packageManager": "yarn@4.9.1",
   "scripts": {
     "codegen": "graph codegen",
     "build": "graph build",
-    "deploy": "graph deploy --node https://api.studio.thegraph.com/deploy/ dswap-stakerv2-subgraph-final",
-    "create-local": "graph create --node http://localhost:8020/ dswap-stakerv2-subgraph-final",
-    "remove-local": "graph remove --node http://localhost:8020/ dswap-stakerv2-subgraph-final",
-    "deploy-local": "graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001 dswap-stakerv2-subgraph-final",
-    "test": "graph test"
+    "deploy": "graph deploy --node https://api.studio.thegraph.com/deploy/dswap-stakingV2",
+    "goldsky-prod": "goldsky subgraph deploy dswap-stakerV2/1.0.0 --path ."
   },
-  "dependencies": {
-    "@graphprotocol/graph-cli": "0.97.1",
-    "@graphprotocol/graph-ts": "0.37.0"
-  },
-  "devDependencies": { "matchstick-as": "0.6.0" }
+  "devDependencies": {
+    "@goldskycom/cli": "^13.0.2",
+    "@graphprotocol/graph-cli": "^0.97.1",
+    "@graphprotocol/graph-ts": "0.38.1",
+    "assemblyscript": "0.28.8",
+    "undici": "^7.16.0"
+  }
 }

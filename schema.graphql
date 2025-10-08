@@ -204,3 +204,67 @@ type WithdrawalPeriodChanged @entity(immutable: true) {
   blockTimestamp: BigInt!
   transactionHash: Bytes!
 }
+type Staker @entity(immutable: false) {
+  id: Bytes!
+  totalFeesGenerated: BigInt! # uint256
+  totalDepositedTokens: BigInt! # uint256
+}
+
+type User @entity(immutable: false) {
+  id: String!
+  totalDRGEarned: BigInt!
+  totalUDSCEarned: BigInt!
+  totalStaked:BigInt!
+  marketplaceOfferCounter: BigInt! # uint256
+}
+
+type Listing @entity(immutable: false){
+  id: String!
+  status:String!
+  listingTokenAmount:BigInt
+  listingPrice:BigInt
+  pricePerToken: BigDecimal
+  ownerAddress: String
+  buyerAddress: String
+  saleId: BigInt!
+}
+
+type StakingActivity @entity(immutable:false){
+  id: Bytes!
+  type: String!
+  amount: BigInt
+  fees: BigInt
+  txHash: String!
+  timestamp: BigInt!
+}
+
+type MarketplaceActivity @entity(immutable:false){
+  id: Bytes!
+  type: String!
+  amount: BigInt
+  priceInUSDC: BigInt
+  txHash: String!
+  soldTo: String
+  boughtFrom: String
+  timestamp: BigInt!
+}
+
+type RewardActivity @entity(immutable:false){
+  id: Bytes!
+  type: String!
+  drgAmount: BigInt
+  usdcAmount:BigInt
+  claimedAmount:BigInt
+  token: BigInt
+  txHash: String!
+  timestamp: BigInt!
+}
+
+type SaleId @entity(immutable:false){
+  id:String!
+  counter:BigInt!
+}
+
+
+
+
