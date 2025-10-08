@@ -64,6 +64,11 @@ export function handleAutoCompoundUserSettingChanged(
 
   entity.save()
 
+  // Update user's autocompound setting
+  let user = getOrCreateUser(event.params.account.toHexString())
+  user.autoCompoundSetting = event.params.newSelectedCompoundType
+  user.save()
+
   if(event.params.newSelectedCompoundType == 0){
 
     let rewardActivity = new RewardActivity(event.transaction.hash.concatI32(event.logIndex.toI32()))
@@ -619,7 +624,7 @@ function getOrCreateUser(address: string): User {
     user.totalUDSCEarned = BigInt.fromI32(0)
     user.totalDRGEarned = BigInt.fromI32(0)
     user.totalStaked = BigInt.fromI32(0)
-    user.autocompoun = null
+    user.autoCompoundSetting = 0
     user.save()
   }
 

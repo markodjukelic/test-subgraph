@@ -216,6 +216,7 @@ type User @entity(immutable: false) {
   totalUDSCEarned: BigInt!
   totalStaked:BigInt!
   marketplaceOfferCounter: BigInt! # uint256
+  autoCompoundSetting: Int! # uint8 - 0 = disabled, 1 = DRG, 2 = USDC
 }
 
 type Listing @entity(immutable: false){
