@@ -228,6 +228,7 @@ type Listing @entity(immutable: false){
   ownerAddress: String
   buyerAddress: String
   saleId: BigInt!
+  txHash: String
 }
 
 type StakingActivity @entity(immutable:false){

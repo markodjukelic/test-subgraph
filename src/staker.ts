@@ -74,7 +74,7 @@ export function handleAutoCompoundUserSettingChanged(
     let rewardActivity = new RewardActivity(event.transaction.hash.concatI32(event.logIndex.toI32()))
     rewardActivity.type = REWARD_ACTIVITY.AUTOCOMPOUND_DISABLED
     rewardActivity.user = event.params.account.toHexString()
-    rewardActivity.tokenOperation = event.params.newSelectedCompoundType
+    rewardActivity.tokenOperation = BigInt.fromI32(event.params.newSelectedCompoundType)
     rewardActivity.claimedAmount = null
     rewardActivity.token = null
     rewardActivity.timestamp = event.block.timestamp
@@ -85,7 +85,7 @@ export function handleAutoCompoundUserSettingChanged(
   let rewardActivity = new RewardActivity(event.transaction.hash.concatI32(event.logIndex.toI32()))
   rewardActivity.type = REWARD_ACTIVITY.AUTOCOMPOUND_ENABLED
   rewardActivity.user = event.params.account.toHexString()
-  rewardActivity.tokenOperation = event.params.newSelectedCompoundType
+  rewardActivity.tokenOperation = BigInt.fromI32(event.params.newSelectedCompoundType)
   rewardActivity.claimedAmount = null
   rewardActivity.token = null
   rewardActivity.timestamp = event.block.timestamp
@@ -409,6 +409,7 @@ export function handleOfferRemoved(event: OfferRemovedEvent): void {
 
   if (marketplace && marketplace.status == MARKETPLACE.ACTIVE) {
     marketplace.status = MARKETPLACE.REMOVED
+    marketplace.txHash = event.transaction.hash.toHexString()
     marketplace.save()
   }
   let marketplaceActivity = new MarketplaceActivity(event.transaction.hash.concatI32(event.logIndex.toI32()))
@@ -471,6 +472,7 @@ export function handlePurchase(event: PurchaseEvent): void {
   if (marketplace && marketplace.status == MARKETPLACE.ACTIVE) {
     marketplace.status = MARKETPLACE.SOLD
     marketplace.buyerAddress = event.params.buyer.toHexString()
+    marketplace.txHash = event.transaction.hash.toHexString()
     marketplace.save()
   }
 
