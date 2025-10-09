@@ -73,6 +73,7 @@ export function handleAutoCompoundUserSettingChanged(
 
     let rewardActivity = new RewardActivity(event.transaction.hash.concatI32(event.logIndex.toI32()))
     rewardActivity.type = REWARD_ACTIVITY.AUTOCOMPOUND_DISABLED
+    rewardActivity.user = event.params.account.toHexString()
     rewardActivity.claimedAmount = null
     rewardActivity.token = null
     rewardActivity.timestamp = event.block.timestamp
@@ -82,6 +83,7 @@ export function handleAutoCompoundUserSettingChanged(
   }
   let rewardActivity = new RewardActivity(event.transaction.hash.concatI32(event.logIndex.toI32()))
   rewardActivity.type = REWARD_ACTIVITY.AUTOCOMPOUND_ENABLED
+  rewardActivity.user = event.params.account.toHexString()
   rewardActivity.claimedAmount = null
   rewardActivity.token = null
   rewardActivity.timestamp = event.block.timestamp
@@ -107,12 +109,15 @@ export function handleClaimed(event: ClaimedEvent): void {
 
   if(event.params.token == 1){
     user.totalDRGEarned = user.totalDRGEarned.plus(event.params.amount)
+    user.save()
   }else if (event.params.token == 2){
     user.totalUDSCEarned = user.totalUDSCEarned.plus(event.params.amount)
+    user.save()
   }
 
   let rewardActivity = new RewardActivity(event.transaction.hash.concatI32(event.logIndex.toI32()))
   rewardActivity.type = REWARD_ACTIVITY.CLAIM
+  rewardActivity.user = event.params.account.toHexString()
   rewardActivity.claimedAmount = event.params.amount
   rewardActivity.token = BigInt.fromI32(event.params.token)
   rewardActivity.timestamp = event.block.timestamp
@@ -141,6 +146,7 @@ export function handleCompound(event: CompoundEvent): void {
 
     let rewardActivity = new RewardActivity(event.transaction.hash.concatI32(event.logIndex.toI32()))
     rewardActivity.type = REWARD_ACTIVITY.COMPOUND
+    rewardActivity.user = event.params.account.toHexString()
     rewardActivity.claimedAmount = null
     rewardActivity.usdcAmount = event.params.usdcAmount
     rewardActivity.drgAmount = event.params.drgAmount
@@ -152,6 +158,7 @@ export function handleCompound(event: CompoundEvent): void {
 
     let rewardActivityAuto = new RewardActivity(event.transaction.hash.concatI32(event.logIndex.toI32()))
     rewardActivityAuto.type = REWARD_ACTIVITY.AUTOCOMPOUND
+    rewardActivityAuto.user = event.params.account.toHexString()
     rewardActivityAuto.claimedAmount = null
     rewardActivityAuto.usdcAmount = event.params.usdcAmount
     rewardActivityAuto.drgAmount = event.params.drgAmount
@@ -184,6 +191,7 @@ export function handleDeposit(event: DepositEvent): void {
 
   let stakingActivity = new StakingActivity(event.transaction.hash.concatI32(event.logIndex.toI32()))
   stakingActivity.type = STAKING_ACTIVITY.DEPOSIT
+  stakingActivity.user = event.params.funder.toHexString()
   stakingActivity.amount = event.params.amount
   stakingActivity.fees = null
   stakingActivity.txHash = event.transaction.hash.toHexString()
@@ -237,6 +245,7 @@ export function handleEnteredWithdrawal(event: EnteredWithdrawalEvent): void {
 
   let stakingActivity = new StakingActivity(event.transaction.hash.concatI32(event.logIndex.toI32()))
   stakingActivity.type = STAKING_ACTIVITY.WITHDRAW_START
+  stakingActivity.user = event.params.account.toHexString()
   stakingActivity.amount = event.params.amount
   stakingActivity.fees = null
   stakingActivity.txHash = event.transaction.hash.toHexString()
@@ -266,6 +275,7 @@ export function handleInstantWithdraw(event: InstantWithdrawEvent): void {
 
   let stakingActivity = new StakingActivity(event.transaction.hash.concatI32(event.logIndex.toI32()))
   stakingActivity.type = STAKING_ACTIVITY.WITHDRAW
+  stakingActivity.user = event.params.account.toHexString()
   stakingActivity.amount = event.params.unlockedAmount
   stakingActivity.fees = event.params.redistributedToStakers.plus(event.params.treasuryFee)
   stakingActivity.txHash = event.transaction.hash.toHexString()
@@ -334,6 +344,7 @@ export function handleNewOffer(event: NewOfferEvent): void {
 
     let marketplaceActivity = new MarketplaceActivity(event.transaction.hash.concatI32(event.logIndex.toI32()))
     marketplaceActivity.type = MARKETPLACE_ACTIVITY.UPDATE_PRICE
+    marketplaceActivity.user = event.params.seller.toHexString()
     marketplaceActivity.amount = event.params.stake
     marketplaceActivity.priceInUSDC = event.params.price
     marketplaceActivity.soldTo = null
@@ -364,6 +375,7 @@ export function handleNewOffer(event: NewOfferEvent): void {
 
   let marketplaceActivity = new MarketplaceActivity(event.transaction.hash.concatI32(event.logIndex.toI32()))
   marketplaceActivity.type = MARKETPLACE_ACTIVITY.LIST
+  marketplaceActivity.user = event.params.seller.toHexString()
   marketplaceActivity.amount = event.params.stake
   marketplaceActivity.priceInUSDC = event.params.price
   marketplaceActivity.soldTo = null
@@ -398,6 +410,7 @@ export function handleOfferRemoved(event: OfferRemovedEvent): void {
   }
   let marketplaceActivity = new MarketplaceActivity(event.transaction.hash.concatI32(event.logIndex.toI32()))
   marketplaceActivity.type = MARKETPLACE_ACTIVITY.REMOVE
+  marketplaceActivity.user = event.params.seller.toHexString()
   marketplaceActivity.amount = null
   marketplaceActivity.priceInUSDC = null
   marketplaceActivity.soldTo = null
@@ -460,6 +473,7 @@ export function handlePurchase(event: PurchaseEvent): void {
 
   let marketplaceActivitySold = new MarketplaceActivity(event.transaction.hash.concatI32(event.logIndex.toI32()))
   marketplaceActivitySold.type = MARKETPLACE_ACTIVITY.SOLD
+  marketplaceActivitySold.user = event.params.seller.toHexString()
   marketplaceActivitySold.amount = event.params.boughtAmount
   marketplaceActivitySold.priceInUSDC = event.params.price
   marketplaceActivitySold.soldTo = event.params.buyer.toHexString()
@@ -470,6 +484,7 @@ export function handlePurchase(event: PurchaseEvent): void {
 
   let marketplaceActivityBought = new MarketplaceActivity(event.transaction.hash)
   marketplaceActivityBought.type = MARKETPLACE_ACTIVITY.BOUGHT
+  marketplaceActivityBought.user = event.params.buyer.toHexString()
   marketplaceActivityBought.amount = event.params.boughtAmount
   marketplaceActivityBought.priceInUSDC = event.params.price
   marketplaceActivityBought.soldTo = null
@@ -577,6 +592,7 @@ export function handleWithdraw(event: WithdrawEvent): void {
 
   let stakingActivity = new StakingActivity(event.transaction.hash.concatI32(event.logIndex.toI32()))
   stakingActivity.type = STAKING_ACTIVITY.WITHDRAW
+  stakingActivity.user = event.params.account.toHexString()
   stakingActivity.amount = event.params.amount
   stakingActivity.fees = null
   stakingActivity.txHash = event.transaction.hash.toHexString()

@@ -233,6 +233,7 @@ type Listing @entity(immutable: false){
 type StakingActivity @entity(immutable:false){
   id: Bytes!
   type: String!
+  user:String!
   amount: BigInt
   fees: BigInt
   txHash: String!
@@ -242,6 +243,7 @@ type StakingActivity @entity(immutable:false){
 type MarketplaceActivity @entity(immutable:false){
   id: Bytes!
   type: String!
+  user:String!
   amount: BigInt
   priceInUSDC: BigInt
   txHash: String!
@@ -253,6 +255,7 @@ type MarketplaceActivity @entity(immutable:false){
 type RewardActivity @entity(immutable:false){
   id: Bytes!
   type: String!
+  user: String!
   drgAmount: BigInt
   usdcAmount:BigInt
   claimedAmount:BigInt
