@@ -256,6 +256,7 @@ type RewardActivity @entity(immutable:false){
   id: Bytes!
   type: String!
   user: String!
+  tokenOperation:BigInt
   drgAmount: BigInt
   usdcAmount:BigInt
   claimedAmount:BigInt

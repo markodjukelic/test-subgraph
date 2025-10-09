@@ -74,6 +74,7 @@ export function handleAutoCompoundUserSettingChanged(
     let rewardActivity = new RewardActivity(event.transaction.hash.concatI32(event.logIndex.toI32()))
     rewardActivity.type = REWARD_ACTIVITY.AUTOCOMPOUND_DISABLED
     rewardActivity.user = event.params.account.toHexString()
+    rewardActivity.tokenOperation = event.params.newSelectedCompoundType
     rewardActivity.claimedAmount = null
     rewardActivity.token = null
     rewardActivity.timestamp = event.block.timestamp
@@ -84,6 +85,7 @@ export function handleAutoCompoundUserSettingChanged(
   let rewardActivity = new RewardActivity(event.transaction.hash.concatI32(event.logIndex.toI32()))
   rewardActivity.type = REWARD_ACTIVITY.AUTOCOMPOUND_ENABLED
   rewardActivity.user = event.params.account.toHexString()
+  rewardActivity.tokenOperation = event.params.newSelectedCompoundType
   rewardActivity.claimedAmount = null
   rewardActivity.token = null
   rewardActivity.timestamp = event.block.timestamp
@@ -154,6 +156,7 @@ export function handleCompound(event: CompoundEvent): void {
     rewardActivity.timestamp = event.block.timestamp
     rewardActivity.txHash = event.transaction.hash.toHexString()
     rewardActivity.save()
+
   }else{
 
     let rewardActivityAuto = new RewardActivity(event.transaction.hash.concatI32(event.logIndex.toI32()))
