@@ -8,7 +8,7 @@ dataSources:
     name: Staker
     network: sei-mainnet
     source:
-      address: "0xe45698282336c1E2D157ef425F611963C2462702"
+      address: "0x2244ad6DB5aBCDcD7c05095e46e8b9b7CF2bEC56"
       abi: Staker
       startBlock: 172302716
     mapping:
