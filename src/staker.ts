@@ -361,6 +361,7 @@ export function handleNewOffer(event: NewOfferEvent): void {
   marketplace.ownerAddress = event.params.seller.toHexString()
   marketplace.listingTokenAmount = event.params.stake
   marketplace.pricePerToken = (listingPriceBigDecimal.div(SIX_DECIMALS)).div(listingTokenAmountBigDecimal.div(DECIMALS))
+  marketplace.timestamp = event.block.timestamp
   marketplace.save()
 
   let marketplaceActivity = new MarketplaceActivity(event.transaction.hash.concatI32(event.logIndex.toI32()))
@@ -654,6 +655,7 @@ function createListing(address: string, counter: BigInt): Listing {
   marketplace.status = MARKETPLACE.ACTIVE
   marketplace.saleId = saleId.counter
   marketplace.buyerAddress = null
+  marketplace.timestamp
   marketplace.save()
 
   saleId.counter = saleId.counter.plus(BigInt.fromI32(1))
