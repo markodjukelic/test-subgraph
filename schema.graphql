@@ -217,6 +217,7 @@ type User @entity(immutable: false) {
   totalStaked:BigInt!
   marketplaceOfferCounter: BigInt! # uint256
   autoCompoundSetting: Int! # uint8 - 0 = disabled, 1 = DRG, 2 = USDC
+  isOnMarketplace: Boolean!
 }
 
 type Listing @entity(immutable: false){

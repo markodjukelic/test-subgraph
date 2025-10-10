@@ -349,6 +349,7 @@ export function handleNewOffer(event: NewOfferEvent): void {
   currentMarketplaceOfferCounter = currentMarketplaceOfferCounter.plus(BigInt.fromI32(1))
 
   user.marketplaceOfferCounter = currentMarketplaceOfferCounter
+  user.isOnMarketplace = true
   user.save()
 
   const listingTokenAmountBigDecimal = event.params.stake.toBigDecimal()
@@ -392,6 +393,8 @@ export function handleOfferRemoved(event: OfferRemovedEvent): void {
   let user = getOrCreateUser(event.params.seller.toHexString())
 
   let currentMarketplaceOfferCounter = user.marketplaceOfferCounter
+  user.isOnMarketplace = false
+  user.save()
 
   let marketplace = getListing(event.params.seller.toHexString(), currentMarketplaceOfferCounter)
 
@@ -451,6 +454,7 @@ export function handlePurchase(event: PurchaseEvent): void {
 
   let user = getOrCreateUser(event.params.seller.toHexString())
   user.totalStaked = user.totalStaked.plus(event.params.boughtAmount)
+  user.isOnMarketplace = false
   user.save()
 
   let currentMarketplaceOfferCounter = user.marketplaceOfferCounter
@@ -634,6 +638,7 @@ function getOrCreateUser(address: string): User {
     user.totalDRGEarned = BigInt.fromI32(0)
     user.totalStaked = BigInt.fromI32(0)
     user.autoCompoundSetting = 0
+    user.isOnMarketplace = false
     user.save()
   }
 
