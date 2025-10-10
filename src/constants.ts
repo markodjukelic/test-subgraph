@@ -15,8 +15,7 @@ export namespace MARKETPLACE_ACTIVITY {
 }
 
 export namespace REWARD_ACTIVITY {
-  export const AUTOCOMPOUND_ENABLED = 'Autocompound Enabled'
-  export const AUTOCOMPOUND_DISABLED = 'Autocompound Disabled'
+  export const AUTOCOMPOUND_UPDATE = 'Autocompound Update'
   export const COMPOUND = 'Compound'
   export const CLAIM = 'Claim'
   export const AUTOCOMPOUND = 'Autocompound'

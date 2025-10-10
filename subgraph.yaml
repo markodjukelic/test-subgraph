@@ -8,9 +8,9 @@ dataSources:
     name: Staker
     network: sei
     source:
-      address: "0x2244ad6DB5aBCDcD7c05095e46e8b9b7CF2bEC56"
+      address: "0xf15BAd7C6CCF478FC13f6DC28Cbd5d660e2Ff6e4"
       abi: Staker
-      startBlock: 172625148
+      startBlock: 172649728
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.9
