@@ -94,15 +94,6 @@ export function handleClaimed(event: ClaimedEvent): void {
 
   entity.save()
 
-  let user = getOrCreateUser(event.params.account.toHexString())
-
-  if(event.params.token == 1){
-    user.totalDRGEarned = user.totalDRGEarned.plus(event.params.amount)
-    user.save()
-  }else if (event.params.token == 2){
-    user.totalUDSCEarned = user.totalUDSCEarned.plus(event.params.amount)
-    user.save()
-  }
 
   let rewardActivity = new RewardActivity(event.transaction.hash.concatI32(event.logIndex.toI32()))
   rewardActivity.type = REWARD_ACTIVITY.CLAIM
@@ -175,9 +166,6 @@ export function handleDeposit(event: DepositEvent): void {
 
   entity.save()
 
-  let user = getOrCreateUser(event.params.funder.toHexString())
-  user.totalStaked = user.totalStaked.plus(event.params.amount)
-  user.save()
 
   let stakingActivity = new StakingActivity(event.transaction.hash.concatI32(event.logIndex.toI32()))
   stakingActivity.type = STAKING_ACTIVITY.DEPOSIT
@@ -453,7 +441,6 @@ export function handlePurchase(event: PurchaseEvent): void {
   staker.save();
 
   let user = getOrCreateUser(event.params.seller.toHexString())
-  user.totalStaked = user.totalStaked.plus(event.params.boughtAmount)
   user.isOnMarketplace = false
   user.save()
 
@@ -634,9 +621,6 @@ function getOrCreateUser(address: string): User {
   if (!user) {
     user = new User(address)
     user.marketplaceOfferCounter = BigInt.fromI32(0)
-    user.totalUDSCEarned = BigInt.fromI32(0)
-    user.totalDRGEarned = BigInt.fromI32(0)
-    user.totalStaked = BigInt.fromI32(0)
     user.autoCompoundSetting = 0
     user.isOnMarketplace = false
     user.save()
