@@ -13,5 +13,8 @@
     "@graphprotocol/graph-ts": "0.38.1",
     "assemblyscript": "0.28.8",
     "undici": "^7.16.0"
+  },
+  "dependencies": {
+    "envio": "2.32.3"
   }
 }
