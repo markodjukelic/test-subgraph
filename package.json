@@ -1,20 +1,33 @@
 {
-  "name": "dswap-stakerv2-subgraph-final",
-  "packageManager": "yarn@4.9.1",
+  "name": "envio-indexer",
+  "version": "0.1.0",
   "scripts": {
-    "codegen": "graph codegen",
-    "build": "graph build",
-    "deploy": "graph deploy --node https://api.studio.thegraph.com/deploy/dswap-stakingV2",
-    "goldsky-prod": "goldsky subgraph deploy dswap-stakerV2/1.0.0 --path ."
+    "clean": "tsc --clean",
+    "build": "tsc --build",
+    "watch": "tsc --watch",
+    "mocha": "ts-mocha test/**/*.ts",
+    "codegen": "envio codegen",
+    "dev": "envio dev",
+    "start": "envio start",
+    "test": "pnpm mocha"
   },
   "devDependencies": {
-    "@goldskycom/cli": "^13.0.2",
-    "@graphprotocol/graph-cli": "^0.97.1",
-    "@graphprotocol/graph-ts": "0.38.1",
-    "assemblyscript": "0.28.8",
-    "undici": "^7.16.0"
+    "@types/chai": "^4.3.11",
+    "@types/mocha": "10.0.6",
+    "@types/node": "20.8.8",
+    "ts-mocha": "^10.0.0",
+    "typescript": "5.2.2",
+    "chai": "4.3.10",
+    "mocha": "10.2.0"
   },
   "dependencies": {
     "envio": "2.32.3"
-  }
+  },
+  "optionalDependencies": {
+    "generated": "./generated"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "packageManager": "pnpm@10.30.0+sha512.2b5753de015d480eeb88f5b5b61e0051f05b4301808a82ec8b840c9d2adf7748eb352c83f5c1593ca703ff1017295bc3fdd3119abb9686efc96b9fcb18200937"
 }

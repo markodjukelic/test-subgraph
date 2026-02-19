@@ -1,278 +1,141 @@
-type AutoCompoundUserSettingChanged @entity(immutable: true) {
-  id: Bytes!
-  account: Bytes! # address
-  newSelectedCompoundType: Int! # uint8
-  blockNumber: BigInt!
-  blockTimestamp: BigInt!
-  transactionHash: Bytes!
+type Staker_AutoCompoundUserSettingChanged {
+  id: ID!
+  account: String!
+  newSelectedCompoundType: BigInt!
 }
 
-type Claimed @entity(immutable: true) {
-  id: Bytes!
-  account: Bytes! # address
-  token: Int! # uint8
-  amount: BigInt! # uint256
-  blockNumber: BigInt!
-  blockTimestamp: BigInt!
-  transactionHash: Bytes!
+type Staker_Claimed {
+  id: ID!
+  account: String!
+  token: BigInt!
+  amount: BigInt!
 }
 
-type Compound @entity(immutable: true) {
-  id: Bytes!
-  account: Bytes! # address
-  compoundInitiatedBy: Bytes! # address
-  token: Int! # uint8
-  drgAmount: BigInt! # uint256
-  usdcAmount: BigInt! # uint256
-  blockNumber: BigInt!
-  blockTimestamp: BigInt!
-  transactionHash: Bytes!
+type Staker_Compound {
+  id: ID!
+  account: String!
+  compoundInitiatedBy: String!
+  token: BigInt!
+  drgAmount: BigInt!
+  usdcAmount: BigInt!
 }
 
-type Deposit @entity(immutable: true) {
-  id: Bytes!
-  funder: Bytes! # address
-  amount: BigInt! # uint256
-  pendingDragon: BigInt! # uint256
-  pendingUSDC: BigInt! # uint256
-  blockNumber: BigInt!
-  blockTimestamp: BigInt!
-  transactionHash: Bytes!
+type Staker_Deposit {
+  id: ID!
+  funder: String!
+  amount: BigInt!
+  pendingDragon: BigInt!
+  pendingUSDC: BigInt!
 }
 
-type Discarded @entity(immutable: true) {
-  id: Bytes!
-  account: Bytes! # address
-  rewardsDragon: BigInt! # uint256
-  rewardsUSDC: BigInt! # uint256
-  blockNumber: BigInt!
-  blockTimestamp: BigInt!
-  transactionHash: Bytes!
+type Staker_Discarded {
+  id: ID!
+  account: String!
+  rewardsDragon: BigInt!
+  rewardsUSDC: BigInt!
 }
 
-type DragonswapTokenPriceOracleSet @entity(immutable: true) {
-  id: Bytes!
-  dragonswapTokenPriceOracle: Bytes! # address
-  blockNumber: BigInt!
-  blockTimestamp: BigInt!
-  transactionHash: Bytes!
+type Staker_DragonswapTokenPriceOracleSet {
+  id: ID!
+  dragonswapTokenPriceOracle: String!
 }
 
-type EnteredWithdrawal @entity(immutable: true) {
-  id: Bytes!
-  account: Bytes! # address
-  amount: BigInt! # uint256
-  emergency: Boolean! # bool
-  blockNumber: BigInt!
-  blockTimestamp: BigInt!
-  transactionHash: Bytes!
+type Staker_EnteredWithdrawal {
+  id: ID!
+  account: String!
+  amount: BigInt!
+  emergency: Boolean!
 }
 
-type InstantWithdraw @entity(immutable: true) {
-  id: Bytes!
-  account: Bytes! # address
-  unlockedAmount: BigInt! # uint256
-  redistributedToStakers: BigInt! # uint256
-  treasuryFee: BigInt! # uint256
-  emergency: Boolean! # bool
-  blockNumber: BigInt!
-  blockTimestamp: BigInt!
-  transactionHash: Bytes!
+type Staker_InstantWithdraw {
+  id: ID!
+  account: String!
+  unlockedAmount: BigInt!
+  redistributedToStakers: BigInt!
+  treasuryFee: BigInt!
+  emergency: Boolean!
 }
 
-type MarketplaceFeesSet @entity(immutable: true) {
-  id: Bytes!
-  marketplaceFeeDragon: BigInt! # uint256
-  marketplaceFeeUSDC: BigInt! # uint256
-  blockNumber: BigInt!
-  blockTimestamp: BigInt!
-  transactionHash: Bytes!
+type Staker_MarketplaceFeesSet {
+  id: ID!
+  marketplaceFeeDragon: BigInt!
+  marketplaceFeeUSDC: BigInt!
 }
 
-type MinimumDepositSet @entity(immutable: true) {
-  id: Bytes!
-  minimumDeposit: BigInt! # uint256
-  blockNumber: BigInt!
-  blockTimestamp: BigInt!
-  transactionHash: Bytes!
+type Staker_MinimumDepositSet {
+  id: ID!
+  minimumDeposit: BigInt!
 }
 
-type NewOffer @entity(immutable: true) {
-  id: Bytes!
-  seller: Bytes! # address
-  stake: BigInt! # uint256
-  price: BigInt! # uint256
-  blockNumber: BigInt!
-  blockTimestamp: BigInt!
-  transactionHash: Bytes!
+type Staker_NewOffer {
+  id: ID!
+  seller: String!
+  stake: BigInt!
+  price: BigInt!
 }
 
-type OfferRemoved @entity(immutable: true) {
-  id: Bytes!
-  seller: Bytes! # address
-  blockNumber: BigInt!
-  blockTimestamp: BigInt!
-  transactionHash: Bytes!
+type Staker_OfferRemoved {
+  id: ID!
+  seller: String!
 }
 
-type OwnershipTransferred @entity(immutable: true) {
-  id: Bytes!
-  previousOwner: Bytes! # address
-  newOwner: Bytes! # address
-  blockNumber: BigInt!
-  blockTimestamp: BigInt!
-  transactionHash: Bytes!
+type Staker_OwnershipTransferred {
+  id: ID!
+  previousOwner: String!
+  newOwner: String!
 }
 
-type Purchase @entity(immutable: true) {
-  id: Bytes!
-  buyer: Bytes! # address
-  seller: Bytes! # address
-  boughtAmount: BigInt! # uint256
-  price: BigInt! # uint256
-  feeDragon: BigInt! # uint256
-  feeUSDC: BigInt! # uint256
-  blockNumber: BigInt!
-  blockTimestamp: BigInt!
-  transactionHash: Bytes!
+type Staker_Purchase {
+  id: ID!
+  buyer: String!
+  seller: String!
+  boughtAmount: BigInt!
+  price: BigInt!
+  feeDragon: BigInt!
+  feeUSDC: BigInt!
 }
 
-type RankRequirementsSet @entity(immutable: true) {
-  id: Bytes!
-  rankRequirements: [BigInt!]! # uint256[]
-  blockNumber: BigInt!
-  blockTimestamp: BigInt!
-  transactionHash: Bytes!
+type Staker_RankRequirementsSet {
+  id: ID!
+  rankRequirements: [BigInt!]!
 }
 
-type RewardsIncreased @entity(immutable: true) {
-  id: Bytes!
-  t: Int! # uint8
-  amount: BigInt! # uint256
-  blockNumber: BigInt!
-  blockTimestamp: BigInt!
-  transactionHash: Bytes!
+type Staker_RewardsIncreased {
+  id: ID!
+  t: BigInt!
+  amount: BigInt!
 }
 
-type StakeManagerSet @entity(immutable: true) {
-  id: Bytes!
-  stakeManager: Bytes! # address
-  blockNumber: BigInt!
-  blockTimestamp: BigInt!
-  transactionHash: Bytes!
+type Staker_StakeManagerSet {
+  id: ID!
+  stakeManager: String!
 }
 
-type Swept @entity(immutable: true) {
-  id: Bytes!
-  token: Bytes! # address
-  to: Bytes! # address
-  amount: BigInt! # uint256
-  blockNumber: BigInt!
-  blockTimestamp: BigInt!
-  transactionHash: Bytes!
+type Staker_Swept {
+  id: ID!
+  token: String!
+  to: String!
+  amount: BigInt!
 }
 
-type TreasuryFeeSet @entity(immutable: true) {
-  id: Bytes!
-  treasuryFee: BigInt! # uint256
-  blockNumber: BigInt!
-  blockTimestamp: BigInt!
-  transactionHash: Bytes!
+type Staker_TreasuryFeeSet {
+  id: ID!
+  treasuryFee: BigInt!
 }
 
-type TreasurySet @entity(immutable: true) {
-  id: Bytes!
-  treasury: Bytes! # address
-  blockNumber: BigInt!
-  blockTimestamp: BigInt!
-  transactionHash: Bytes!
+type Staker_TreasurySet {
+  id: ID!
+  treasury: String!
 }
 
-type Withdraw @entity(immutable: true) {
-  id: Bytes!
-  account: Bytes! # address
-  amount: BigInt! # uint256
-  blockNumber: BigInt!
-  blockTimestamp: BigInt!
-  transactionHash: Bytes!
+type Staker_Withdraw {
+  id: ID!
+  account: String!
+  amount: BigInt!
 }
 
-type WithdrawalPeriodChanged @entity(immutable: true) {
-  id: Bytes!
-  withdrawalPeriod: BigInt! # uint256
-  blockNumber: BigInt!
-  blockTimestamp: BigInt!
-  transactionHash: Bytes!
+type Staker_WithdrawalPeriodChanged {
+  id: ID!
+  withdrawalPeriod: BigInt!
 }
-type Staker @entity(immutable: false) {
-  id: Bytes!
-  totalFeesGenerated: BigInt! # uint256
-  totalDepositedTokens: BigInt! # uint256
-}
-
-type User @entity(immutable: false) {
-  id: String!
-  totalDRGEarned: BigInt!
-  totalUDSCEarned: BigInt!
-  totalStaked:BigInt!
-  marketplaceOfferCounter: BigInt! # uint256
-  autoCompoundSetting: Int! # uint8 - 0 = disabled, 1 = DRG, 2 = USDC
-  isOnMarketplace: Boolean!
-}
-
-type Listing @entity(immutable: false){
-  id: String!
-  status:String!
-  listingTokenAmount:BigInt
-  listingPrice:BigInt
-  pricePerToken: BigDecimal
-  ownerAddress: String
-  buyerAddress: String
-  saleId: BigInt!
-  txHash: String
-  timestamp:BigInt
-}
-
-type StakingActivity @entity(immutable:false){
-  id: Bytes!
-  type: String!
-  user:String!
-  amount: BigInt
-  fees: BigInt
-  txHash: String!
-  timestamp: BigInt!
-}
-
-type MarketplaceActivity @entity(immutable:false){
-  id: Bytes!
-  type: String!
-  user:String!
-  amount: BigInt
-  priceInUSDC: BigInt
-  txHash: String!
-  soldTo: String
-  boughtFrom: String
-  timestamp: BigInt!
-}
-
-type RewardActivity @entity(immutable:false){
-  id: Bytes!
-  type: String!
-  user: String!
-  tokenOperation:BigInt
-  drgAmount: BigInt
-  usdcAmount:BigInt
-  claimedAmount:BigInt
-  token: BigInt
-  txHash: String!
-  timestamp: BigInt!
-}
-
-type SaleId @entity(immutable:false){
-  id:String!
-  counter:BigInt!
-}
-
-
-
 
