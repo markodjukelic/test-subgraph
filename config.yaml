@@ -2,7 +2,7 @@
 name: envio-indexer
 networks:
 - id: 1329
-  start_block: 173536537
+  start_block: 194484136
   rpc_config:
     url: https://evm-rpc.sei-apis.com
   contracts:
