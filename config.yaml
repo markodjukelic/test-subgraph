@@ -5,7 +5,7 @@ field_selection:
     - hash
 networks:
 - id: 1329
-  start_block: 79151201
+  start_block: 194745779
   rpc_config:
     url: https://evm-rpc.sei-apis.com
   contracts:
