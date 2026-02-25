@@ -2,6 +2,9 @@ type Staker_AutoCompoundUserSettingChanged {
   id: ID!
   account: String!
   newSelectedCompoundType: BigInt!
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: String!
 }
 
 type Staker_Claimed {
@@ -9,6 +12,9 @@ type Staker_Claimed {
   account: String!
   token: BigInt!
   amount: BigInt!
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: String!
 }
 
 type Staker_Compound {
@@ -18,6 +24,9 @@ type Staker_Compound {
   token: BigInt!
   drgAmount: BigInt!
   usdcAmount: BigInt!
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: String!
 }
 
 type Staker_Deposit {
@@ -26,6 +35,9 @@ type Staker_Deposit {
   amount: BigInt!
   pendingDragon: BigInt!
   pendingUSDC: BigInt!
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: String!
 }
 
 type Staker_Discarded {
@@ -33,11 +45,17 @@ type Staker_Discarded {
   account: String!
   rewardsDragon: BigInt!
   rewardsUSDC: BigInt!
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: String!
 }
 
 type Staker_DragonswapTokenPriceOracleSet {
   id: ID!
   dragonswapTokenPriceOracle: String!
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: String!
 }
 
 type Staker_EnteredWithdrawal {
@@ -45,6 +63,9 @@ type Staker_EnteredWithdrawal {
   account: String!
   amount: BigInt!
   emergency: Boolean!
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: String!
 }
 
 type Staker_InstantWithdraw {
@@ -54,17 +75,26 @@ type Staker_InstantWithdraw {
   redistributedToStakers: BigInt!
   treasuryFee: BigInt!
   emergency: Boolean!
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: String!
 }
 
 type Staker_MarketplaceFeesSet {
   id: ID!
   marketplaceFeeDragon: BigInt!
   marketplaceFeeUSDC: BigInt!
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: String!
 }
 
 type Staker_MinimumDepositSet {
   id: ID!
   minimumDeposit: BigInt!
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: String!
 }
 
 type Staker_NewOffer {
@@ -72,17 +102,26 @@ type Staker_NewOffer {
   seller: String!
   stake: BigInt!
   price: BigInt!
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: String!
 }
 
 type Staker_OfferRemoved {
   id: ID!
   seller: String!
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: String!
 }
 
 type Staker_OwnershipTransferred {
   id: ID!
   previousOwner: String!
   newOwner: String!
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: String!
 }
 
 type Staker_Purchase {
@@ -93,22 +132,34 @@ type Staker_Purchase {
   price: BigInt!
   feeDragon: BigInt!
   feeUSDC: BigInt!
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: String!
 }
 
 type Staker_RankRequirementsSet {
   id: ID!
   rankRequirements: [BigInt!]!
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: String!
 }
 
 type Staker_RewardsIncreased {
   id: ID!
   t: BigInt!
   amount: BigInt!
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: String!
 }
 
 type Staker_StakeManagerSet {
   id: ID!
   stakeManager: String!
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: String!
 }
 
 type Staker_Swept {
@@ -116,26 +167,109 @@ type Staker_Swept {
   token: String!
   to: String!
   amount: BigInt!
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: String!
 }
 
 type Staker_TreasuryFeeSet {
   id: ID!
   treasuryFee: BigInt!
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: String!
 }
 
 type Staker_TreasurySet {
   id: ID!
   treasury: String!
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: String!
 }
 
 type Staker_Withdraw {
   id: ID!
   account: String!
   amount: BigInt!
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: String!
 }
 
 type Staker_WithdrawalPeriodChanged {
   id: ID!
   withdrawalPeriod: BigInt!
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: String!
 }
 
+type StakerInfo {
+  id: ID!
+  totalFeesGenerated: BigInt!
+  totalDepositedTokens: BigInt!
+}
+
+type User {
+  id: ID!
+  totalDRGEarned: BigInt!
+  totalUSDCEarned: BigInt!
+  totalStaked: BigInt!
+  marketplaceOfferCounter: BigInt!
+  autoCompoundSetting: Int!
+  isOnMarketplace: Boolean!
+}
+
+type Listing {
+  id: ID!
+  status: String!
+  listingTokenAmount: BigInt
+  listingPrice: BigInt
+  pricePerToken: Float
+  ownerAddress: String
+  buyerAddress: String
+  saleId: BigInt!
+  txHash: String
+  timestamp: BigInt
+}
+
+type StakingActivity {
+  id: ID!
+  activityType: String!
+  user: String!
+  amount: BigInt
+  fees: BigInt
+  txHash: String!
+  timestamp: BigInt!
+}
+
+type MarketplaceActivity {
+  id: ID!
+  activityType: String!
+  user: String!
+  amount: BigInt
+  priceInUSDC: BigInt
+  txHash: String!
+  soldTo: String
+  boughtFrom: String
+  timestamp: BigInt!
+}
+
+type RewardActivity {
+  id: ID!
+  activityType: String!
+  user: String!
+  tokenOperation: BigInt
+  drgAmount: BigInt
+  usdcAmount: BigInt
+  claimedAmount: BigInt
+  token: BigInt
+  txHash: String!
+  timestamp: BigInt!
+}
+
+type SaleId {
+  id: ID!
+  counter: BigInt!
+}
