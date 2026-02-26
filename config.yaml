@@ -5,7 +5,7 @@ field_selection:
     - hash
 networks:
 - id: 1329
-  start_block: 194591473
+  start_block: 173536573
   hypersync_config:
     url: https://sei.hypersync.xyz
   contracts:
