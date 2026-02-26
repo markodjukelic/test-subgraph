@@ -7,7 +7,7 @@ networks:
 - id: 1329
   start_block: 173536573
   rpc_config:
-    url: https://sei.drpc.org
+    url: https://young-tiniest-meadow.sei-pacific.quiknode.pro/a13ddff9b5ea16182d448a1a0a38a96e0ddf4324/
   contracts:
   - name: Staker
     address:
