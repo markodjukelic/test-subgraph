@@ -5,7 +5,7 @@ field_selection:
     - hash
 networks:
 - id: 1329
-  start_block: 173536573
+  start_block: 194591473
   rpc_config:
     url: https://young-tiniest-meadow.sei-pacific.quiknode.pro/a13ddff9b5ea16182d448a1a0a38a96e0ddf4324/
   contracts:
